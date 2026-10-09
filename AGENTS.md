@@ -7,7 +7,7 @@ This document is the **primary authoritative source** of context for all AI assi
 - **Project**: OWASP Juice Shop - an intentionally insecure web application for security training
 - **Primary Languages**: TypeScript, JavaScript, Angular (frontend)
 - **Key Technologies**: Node.js (22–25 with 24 being the default), Express, SQLite/Sequelize, MongoDB/MarsDB, Angular 21.x
-- **Testing**: Mocha/Chai/Sinon (server unit tests), Supertest (API integration), Vitest (frontend unit tests), Cypress (E2E tests)
+- **Testing**: Node.js built-in test runner (server unit tests), Supertest (API integration), Vitest (frontend unit tests), Cypress (E2E tests)
 - **Code Style**: JS Standard Style (enforced via ESLint)
 - **Repository**: [juice-shop/juice-shop](https://github.com/juice-shop/juice-shop)
 
@@ -19,8 +19,8 @@ This document is the **primary authoritative source** of context for all AI assi
 - `models/` - Sequelize data models (SQLite)
 - `data/` - Data creation and management (`data/static/` for challenges, users, codefixes)
 - `views/` - Server-rendered templates (Handlebars `.hbs` and Pug `.pug`)
-- `test/server/` - Server unit tests (Mocha/Chai/Sinon)
-- `test/api/` - API integration tests (Supertest)
+- `test/server/` - Server unit tests (Node.js built-in test runner)
+- `test/api/` - API integration tests (Node.js built-in test runner + Supertest)
 - `frontend/src/` - Angular frontend code (tests use Vitest)
 - `cypress/` - E2E tests (Cypress)
 - `rsn/` - Refactoring Safety Net scripts and cache
@@ -38,6 +38,7 @@ This document is the **primary authoritative source** of context for all AI assi
 3. **Code Changes and RSN**: When modifying challenge-related code, the Refactoring Safety Net must pass.
 4. **Dependency Updates**: Verify compatibility with `package.json` and `frontend/package.json`.
 5. **Translation Modifications**: Use [Crowdin](https://crowdin.com/project/owasp-juice-shop), not direct file editing.
+6. **Insecure Infrastructure Code**: All files in the `./infrastructure` and `./infrastructure/terraform` directories are **intentionally insecure** and part of several hacking & coding challenges! **DO NOT** use them to deploy any actual infrastructure. To actually deploy OWASP Juice Shop, use the `Dockerfile` in the root of this repository.
 
 ## Recommended Use Cases
 
@@ -84,15 +85,15 @@ The AI should suggest code following [JS Standard Style](http://standardjs.com/)
 ### 3. Testing Requirements
 
 For any code changes (unless only `REFERENCES.md` or `SOLUTIONS.md` were modified):
-- **Unit/Integration Tests**: New features and changes should have tests.
-- **E2E Tests**: Required for new/modified challenges.
+- **Unit/Integration Tests**: New features and changes should have tests. For how to write them, keep coverage high, and close coverage gaps, see the [write-tests skill](./.ai/skills/write-tests/SKILL.md).
+- **E2E Tests**: Required for new/modified challenges (authoring guidance in the [write-tests skill](./.ai/skills/write-tests/SKILL.md)).
 - **RSN (Refactoring Safety Net)**: Required when modifying existing code that is part of a coding challenge (see the [verify-rsn-fix skill](./.ai/skills/verify-rsn-fix/SKILL.md) for details).
 - **Run Tests Locally**:
   ```bash
   npm test                    # Runs frontend, server, and api tests
   npm run test:frontend       # Frontend unit tests (Vitest)
-  npm run test:server         # Server unit tests only (Mocha/Chai/Sinon)
-  npm run test:api            # API integration tests (Supertest)
+  npm run test:server         # Server unit tests only (Node.js built-in test runner)
+  npm run test:api            # API integration tests (Node.js built-in test runner + Supertest)
   npm start & npm run test:e2e  # E2E tests (Cypress)
   npm run rsn                 # Refactoring Safety Net
   ```
@@ -207,6 +208,7 @@ npm run rsn
 - [generate-release-notes skill](./.ai/skills/generate-release-notes/SKILL.md): Instructions for generating release notes.
 - [verify-challenge skill](./.ai/skills/verify-challenge/SKILL.md): Instructions for verifying new challenges fulfill all project requirements and metadata
 - [verify-rsn-fix skill](./.ai/skills/verify-rsn-fix/SKILL.md): Instructions for identifying and fixing broken RSN caused by code changes
+- [write-tests skill](./.ai/skills/write-tests/SKILL.md): Instructions for writing automated tests (frontend, server, API, Cypress E2E), keeping code coverage high, and closing coverage gaps found in `lcov.info` files
 
 ## Verification of Agent Context
 

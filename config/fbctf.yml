@@ -284,6 +284,9 @@ ctf:
     exposedMetricsChallenge:
       name: Japan
       code: JP
+    misplacedIacFiles:
+      name: Latvia
+      code: LV
     freeDeluxeChallenge:
       name: Vietnam
       code: VN
@@ -350,3 +353,12 @@ ctf:
     aiDebuggingChallenge:
       name: Iceland
       code: IS
+    systemPromptExtractionChallenge:
+      name: Greece
+      code: GR
+    iacLeakedKeyChallenge:
+      name: Liechtenstein
+      code: LI
+    vulnerableDockerImageChallenge:
+      name: Portugal
+      code: PT

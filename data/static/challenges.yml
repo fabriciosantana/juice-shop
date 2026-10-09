@@ -26,7 +26,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Access Log'
   category: 'Observability Failures'
@@ -85,7 +84,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Bjoern''s Favorite Pet'
   category: 'Broken Authentication'
@@ -179,7 +177,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'CAPTCHA Bypass'
   category: 'Broken Anti Automation'
@@ -236,7 +233,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Client-side XSS Protection'
   category: 'XSS'
@@ -253,7 +249,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Confidential Document'
   category: 'Sensitive Data Exposure'
@@ -309,6 +304,9 @@
     - 'Simply using the deprecated interface suffices to solve this challenge. No attack or exploit is necessary.'
   mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Web_Service_Security_Cheat_Sheet.html'
   key: deprecatedInterfaceChallenge
+  disabledEnv:
+    - Docker
+    - Heroku
 -
   name: 'Easter Egg'
   category: 'Broken Access Control'
@@ -545,7 +543,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Imaginary Challenge'
   category: 'Cryptographic Issues'
@@ -778,7 +775,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'NoSQL Exfiltration'
   category: 'Injection'
@@ -796,7 +792,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'NoSQL Manipulation'
   category: 'Injection'
@@ -924,7 +919,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Repetitive Registration'
   category: 'Improper Input Validation'
@@ -1040,7 +1034,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Score Board'
   category: 'Miscellaneous'
@@ -1085,7 +1078,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Steganography'
   category: 'Security through Obscurity'
@@ -1115,7 +1107,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Supply Chain Attack'
   category: 'Vulnerable Components'
@@ -1205,7 +1196,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'View Basket'
   category: 'Broken Access Control'
@@ -1227,7 +1217,7 @@
   category: 'Vulnerable Components'
   tags:
     - OSINT
-  description: '<a href="/#/contact">Inform the shop</a> about a vulnerable library it is using. (Mention the exact library name and version in your comment)'
+  description: '<a href="/#/contact">Inform the shop</a> about a high-severity vulnerability caused by one of its directly used dependencies. (Mention the exact library name and version in your comment)'
   difficulty: 4
   hints:
     - 'Report one of two possible answers via the "Customer Feedback" form. Do not forget to submit the library''s version as well.'
@@ -1275,7 +1265,6 @@
   disabledEnv:
   - Docker
   - Heroku
-  - Gitpod
 -
   name: 'XXE DoS'
   category: 'XXE'
@@ -1293,7 +1282,6 @@
   disabledEnv:
   - Docker
   - Heroku
-  - Gitpod
 -
   name: 'Memory Bomb'
   category: 'Insecure Deserialization'
@@ -1310,7 +1298,6 @@
   disabledEnv:
   - Docker
   - Heroku
-  - Gitpod
 -
   name: 'Zero Stars'
   category: 'Improper Input Validation'
@@ -1362,6 +1349,19 @@
   mitigationUrl: ~
   key: exposedMetricsChallenge
 -
+  name: 'Misplaced IaC Files'
+  category: 'Security Misconfiguration'
+  tags:
+    - Prerequisite
+  description: 'Access the misplaced Infrastructure as Code files that were accidentally included in the web application deliverable.'
+  difficulty: 2
+  hints:
+    - 'The developers probably used some kind of tool to automate their cloud deployment and containerization.'
+    - 'Such tools typically store their configuration in a directory with a very predictable name.'
+    - 'Try common directory names that popular deployment automation and infrastructure tools use by convention.'
+  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Infrastructure_as_Code_Security_Cheat_Sheet.html'
+  key: misplacedIacFiles
+-
   name: 'Deluxe Fraud'
   category: 'Improper Input Validation'
   description: 'Obtain a Deluxe Membership without paying for it.'
@@ -1379,10 +1379,10 @@
   description: 'Change the name of a user by performing Cross-Site Request Forgery from <a href="http://htmledit.squarefree.com">another origin</a>.'
   difficulty: 3
   hints:
-    - 'Find a form which updates the username and then construct a malicious page in the online HTML editor. You probably need an older browser version for this.'
+    - 'Find a form which updates the username and then construct a malicious page on the mentioned "another origin".'
     - 'Take a look at what happens when you change the username within the profile page.'
     - 'Search for information about CSRF attacks and look out for examples that can be applied to this challenge.'
-    - 'Write the code for the CSRF attack within http://htmledit.squarefree.com and verify that it changes your username.'
+    - 'If "another origin" is cross-site, you probably need an older browser version for this challenge. If it is cross-domain, you should be able to make it work in a modern browser.'
   mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html'
   key: csrfChallenge
 -
@@ -1470,7 +1470,6 @@
   disabledEnv:
     - Docker
     - Heroku
-    - Gitpod
 -
   name: 'Mass Dispel'
   category: 'Miscellaneous'
@@ -1492,7 +1491,7 @@
   mitigationUrl: ~
   key: csafChallenge
 -
-  name: 'Exposed credentials'
+  name: 'Exposed Credentials'
   category: 'Sensitive Data Exposure'
   description: 'A developer was careless with hardcoding unused, but still valid credentials for a testing account on the client-side.'
   difficulty: 2
@@ -1555,3 +1554,40 @@
     - 'If you see the tool calls but the challenge is not marked as solved, you might be still logged in as a user with admin privileges.'
   mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Broken_Access_Control_Cheat_Sheet.html'
   key: aiDebuggingChallenge
+-
+  name: 'System Prompt Extraction'
+  category: 'Injection'
+  tags:
+    - AI/LLM
+  description: 'Extract the chatbot''s system prompt using prompt injection, then submit your findings (including any confidential sections) via the <a href="/#/complain">Customer Complaint form</a>.'
+  difficulty: 3
+  hints:
+    - 'The chatbot has a system prompt with both public and confidential instructions. Try to make it reveal its full configuration using prompt injection.'
+    - 'There are internal rules beyond the standard coupon policy. Think about edge cases - what happens in unusual customer situations?'
+    - 'The similarity check is lenient - you do not need to reproduce the system prompt word for word. Focus on capturing the confidential sections accurately.'
+  mitigationUrl: 'https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/'
+  key: systemPromptExtractionChallenge
+-
+  name: 'Login Cloud Admin'
+  category: 'Sensitive Data Exposure'
+  description: 'Log in with the cloud admin''s user account <i>without</i> using SQL Injection.'
+  difficulty: 4
+  hints:
+    - 'Brute forcing the password will not work. The password is too strong.'
+    - 'There might be another way to authenticate besides using the correct password.'
+    - 'Look for sensitive information that was accidentally deployed alongside the application.'
+    - 'Some Terraform file in the infrastructure directory accessible from the web application contains sensitive information that can be used to forge authentication tokens.'
+  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Infrastructure_as_Code_Security_Cheat_Sheet.html'
+  key: iacLeakedKeyChallenge
+-
+  name: 'Vulnerable Infrastructure'
+  category: 'Vulnerable Components'
+  description: '<a href="/#/complain">Inform the shop</a> about the use of a known vulnerable infrastructure component. (Identify the component as specifically as possible in your complaint)'
+  difficulty: 3
+  hints:
+    - 'The shop accidentally exposed some infrastructure configuration files alongside the web application.'
+    - 'Look for Docker-related files in the infrastructure directory.'
+    - 'Check all referenced third-party images across the Dockerfile and docker-compose.yml and research if any of them have known vulnerabilities or are end-of-life.'
+    - 'Not every outdated-looking version number is actually vulnerable. Do your research on official CVE databases or vendor advisories.'
+  mitigationUrl: 'https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html'
+  key: vulnerableDockerImageChallenge
